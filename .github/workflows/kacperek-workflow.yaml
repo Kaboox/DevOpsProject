@@ -1,16 +1,14 @@
-name: Hello
-on: 
-  workflow_dispatch:
-jobs:
-  say-hi:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Print message
-        run: echo "Hello, GitHub Actions!"
+name: Just run
+on: workflow_dispatch
 
-  say-bye:
-    needs: say-hi
+jobs:
+  run-it:
     runs-on: ubuntu-latest
+    env:
+      USERNAME: "kacper"
+
     steps:
-      - name: Print second message
-        run: echo "This is the second job, running after the first one!"
+      - uses: actions/checkout@v4
+
+      - name: Run script
+        run: python3 kacperek/script.py
